@@ -167,12 +167,12 @@ profile-photo .img{
 /*---------------------------Tech Stack---------------------------*/
 
 .tech-stack-area {
-  padding-top: 130px;
-  background-color: #202020;
   display: flex;
   justify-content: center;  /* Centers content horizontally */
   align-items: center;      /* Centers content vertically */
   min-height: 100vh;         /* Ensures the section takes up the full height of the page */
+  padding-top: 5rem;        /* Adjusted padding */
+  background-color: #202020;
 }
 
 .tech-stack {
@@ -186,29 +186,31 @@ profile-photo .img{
 
 .tech-stack-content {
   flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
 }
 
 .tech-stack-content h4 {
-  color: #fed700;
-  font-size: 40px;
-  line-height: 70px;
-  text-transform: capitalize;
+  color: #fed700;           /* Yellow color for header */
+  font-size: 3rem;          /* Font size similar to the profile section */
+  margin-bottom: 20px;
 }
 
 .tech-stack-content p {
-  color: #fff;
-  text-align: justify;
+  color: #e5e5e5;           /* Light gray color for paragraph */
+  font-size: 18px;          /* Similar font size for text */
+  line-height: 1.6;
 }
 
 .tech-stack-content ul {
-  color: #fff;
+  color: #e5e5e5;           /* Light gray color for list items */
   text-align: justify;
 }
 
 .tech-stack-content ul li {
   list-style-type: none;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 18px;          /* Consistent font size */
 }
 
 .tech-stack-skills {
@@ -219,7 +221,7 @@ profile-photo .img{
   border-bottom: 1px dashed #ddd;
   padding-bottom: 10px;
   margin-bottom: 10px;
-  color: #fff;
+  color: #e5e5e5;
   font-size: 18px;
 }
 
@@ -227,6 +229,19 @@ profile-photo .img{
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
+}
+
+/* Social Icons Hover Effect */
+.tech-stack-content .social i {
+  color: #e5e5e5;
+  font-size: 18px;
+  margin-right: 10px;
+  transition: 0.5s;
+}
+
+.tech-stack-content .social i:hover {
+  color: #fed700;
+  transform: rotate(360deg);
 }
 
 
