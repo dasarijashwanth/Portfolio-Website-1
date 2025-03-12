@@ -164,6 +164,71 @@ profile-photo .img{
   transform: rotate(360deg);
 }
 
+/*---------------------------Tech Stack---------------------------*/
+
+.tech-stack-area {
+  padding-top: 130px;
+  background-color: #202020;
+  display: flex;
+  justify-content: center;  /* Centers content horizontally */
+  align-items: center;      /* Centers content vertically */
+  min-height: 100vh;         /* Ensures the section takes up the full height of the page */
+}
+
+.tech-stack {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;                /* You can adjust the width as needed */
+  max-width: 1200px;         /* Optional, to limit the maximum width */
+  margin-bottom: 50px;
+}
+
+.tech-stack-content {
+  flex-basis: 60%;
+}
+
+.tech-stack-content h4 {
+  color: #fed700;
+  font-size: 40px;
+  line-height: 70px;
+  text-transform: capitalize;
+}
+
+.tech-stack-content p {
+  color: #fff;
+  text-align: justify;
+}
+
+.tech-stack-content ul {
+  color: #fff;
+  text-align: justify;
+}
+
+.tech-stack-content ul li {
+  list-style-type: none;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.tech-stack-skills {
+  flex-basis: 35%;
+}
+
+.tech-stack-skills ul li {
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.tech-stack-skills ul li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
 
 
  /*---------------------------About---------------------------*/
