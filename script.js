@@ -63,34 +63,23 @@ $(document).ready(function() {
     }
   );
 
-  // Initialize EmailJS with your user ID
-emailjs.init("jashwanthdasari143@gmail.com");  // Your EmailJS user ID
+  // Contact Form Submission to Google Sheet
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzUSaaX3XmlE5m9YLOHOBrRuCh2Ohv49N9bs4bew7xPd1qlgpvXtnudDs5Xhp3jF-Fx/exec';
+const form = document.forms['submitToGoogleSheet'];
+const msg = document.getElementById("msg");
 
-// Form submission handler
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevents the default form submission
+form.addEventListener('submit', e => {
+  e.preventDefault();  // Prevents default form submission
 
-    // Get form values
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var subject = document.getElementById('subject').value;
-    var message = document.getElementById('message').value;
-
-    // Create the data object to send in the email
-    var templateParams = {
-        from_name: name,
-        from_email: email,
-        subject: subject,
-        message: message
-    };
-
-    // Send the email
-    emailjs.send("service_iixu6wz", templateParams)
-        .then(function(response) {
-            alert('Message sent successfully!');
-            document.getElementById('contactForm').reset();  // Reset the form
-        }, function(error) {
-            alert('Failed to send message. Please try again later.');
-        });
+  // Send form data to Google Sheets via Google Apps Script
+  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+    .then(response => {
+      msg.innerHTML = "✅ Message sent successfully!";
+      setTimeout(() => msg.innerHTML = "", 5000);  // Clear message after 5 seconds
+      form.reset();  // Reset the form after submission
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      msg.innerHTML = "❌ Something went wrong. Please try again later.";
+    });
 });
-
