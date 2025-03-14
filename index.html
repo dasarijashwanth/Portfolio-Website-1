@@ -248,27 +248,27 @@
     
         <!-------------------------- Contact Me -------------------------->
 
-    <section class="contact-content" id="contact">
+   <section class="contact-content" id="contact">
     <div class="container">
         <div class="contact-title">
             <h4>Contact Me</h4>
             <p>Get In Touch</p>
         </div>
         <div class="contact">
-            <form id="contactForm">
-                <input type="text" id="name" placeholder="Name" required>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="text" id="subject" placeholder="Subject">
-                <textarea id="message" placeholder="Message"></textarea>
+            <form name="submitToGoogleSheet">
+                <input type="text" name="NAME" placeholder="Name" required>
+                <input type="email" name="EMAIL" placeholder="Email" required>
+                <input type="text" name="SUBJECT" placeholder="Subject">
+                <textarea name="MESSAGE" placeholder="Message"></textarea>
                 <input type="submit" value="Send Message" class="submit">
             </form>
+            <p id="msg"></p> <!-- Success/Error message will appear here -->
         </div>
     </div>
 </section>
 
-<!-- Include the EmailJS SDK -->
-<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script src="contact.js"></script> <!-- Link to the external JavaScript file -->
+<!-- Link to the JavaScript file -->
+<script src="contact.js"></script>
 
 
 
