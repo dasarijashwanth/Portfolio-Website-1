@@ -166,27 +166,31 @@ profile-photo .img{
 
  /*---------------------------About---------------------------*/
 
-.about-area{
+.about-area {
   padding-top: 130px;
   background-color: #202020;
 }
-.about{
+
+.about {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom:50px;
+  margin-bottom: 50px;
 }
-.about-content{
+
+.about-content {
   flex-basis: 60%;
 }
-.about-content h4{
-  color: #fed700;
-  font-size: 40px;
+
+.about-content h4, .about-skills h1 {
+  color: #fed700; /* Same color for both headings */
+  font-size: 40px; /* Same font size for both headings */
   line-height: 70px;
   text-transform: capitalize;
 }
+
 .about-content ul {
-  color:#fff;
+  color: #fff;
   text-align: justify;
 }
 
@@ -195,17 +199,19 @@ profile-photo .img{
   margin-bottom: 10px;
 }
 
-.about-skills{
+.about-skills {
   flex-basis: 35%;
 }
-.about-skills ul li{
+
+.about-skills ul li {
   border-bottom: 1px dashed #ddd;
   padding-bottom: 10px;
   margin-bottom: 10px;
   color: #fff;
   font-size: 18px;
 }
-.about-skills ul li:last-child{
+
+.about-skills ul li:last-child {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
