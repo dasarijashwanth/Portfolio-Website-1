@@ -419,15 +419,6 @@ profile-photo .img{
     transition: .3s;
     margin-bottom: 30px;
 }
-.publication i{
-  background-color: #fed700;
-  width: 60px;
-  height: 60px;
-  color: #333;
-  font-size: 26px;
-  line-height: 60px;
-  border-radius: 50%;
-}
 .publication h4{
   font-size: 26px;
   text-transform: capitalize;
