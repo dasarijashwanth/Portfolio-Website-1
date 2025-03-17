@@ -65,9 +65,7 @@ $(document).ready(function() {
   ScrollReveal().reveal(".projects, .publications, .contact", {
     origin: "bottom"
   });
-  ScrollReveal().reveal(".publications-title, .publication", {
-    origin: "top"
-  });
+  
 
   // Contact form submission to Google Sheets
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzUSaaX3XmlE5m9YLOHOBrRuCh2Ohv49N9bs4bew7xPd1qlgpvXtnudDs5Xhp3jF-Fx/exec';
