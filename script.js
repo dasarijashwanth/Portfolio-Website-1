@@ -76,18 +76,31 @@ $(document).ready(function() {
   })();
 
   const form = document.getElementById("contact-form");
+  const msg = document.getElementById("msg");
 
   form.addEventListener("submit", function(e) {
     e.preventDefault();
 
     emailjs.sendForm("service_nmqgw5a", "template_1vykt3k", this)
       .then(() => {
-        const msg = document.getElementById("msg");
-        msg.innerHTML = "Message sent successfully!";
-        setTimeout(() => msg.innerHTML = "", 5000);
+        msg.innerHTML = "✅ Message sent successfully!";
+        msg.className = "success";
+        msg.style.display = "block";
+        setTimeout(() => {
+          msg.style.display = "none";
+          msg.className = "";
+          msg.innerHTML = "";
+        }, 5000);
         form.reset();
       }, (error) => {
-        alert("Message failed to send. Error: " + JSON.stringify(error));
+        msg.innerHTML = "❌ Failed to send message. Please try again.";
+        msg.className = "error";
+        msg.style.display = "block";
+        setTimeout(() => {
+          msg.style.display = "none";
+          msg.className = "";
+          msg.innerHTML = "";
+        }, 5000);
       });
   });
 </script>
