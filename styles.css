@@ -470,16 +470,26 @@ profile-photo .img{
   transform: scale(1.1);
   cursor: pointer;
 }
-#msg{
-  color: #fff;
-  font-size: 20px;
-  margin-top: -8px;
-  display: block;
+
+#msg {
+  font-size: 16px;
+  margin-top: 12px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: none;
 }
 
+#msg.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
 
-
-
+#msg.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
 
 
 /*---------------------------Footer---------------------------*/
