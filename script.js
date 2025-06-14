@@ -68,12 +68,11 @@ $(document).ready(function() {
   
 
   // Contact form submission to Google Sheets
-  <!-- EmailJS SDK -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  (function() {
-    emailjs.init("o0KiwX8aSnZJxx_6S");
-  })();
+ <!-- NEW EmailJS SDK v4 -->
+<script type="module">
+  import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+
+  emailjs.init('o0KiwX8aSnZJxx_6S'); // Your Public Key
 
   const form = document.getElementById("contact-form");
   const msg = document.getElementById("msg");
@@ -81,7 +80,7 @@ $(document).ready(function() {
   form.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    emailjs.sendForm("service_nmqgw5a", "template_1vykt3k", this)
+    emailjs.sendForm('service_nmqgw5a', 'template_1vykt3k', this)
       .then(() => {
         msg.innerHTML = "✅ Message sent successfully!";
         msg.className = "success";
@@ -93,9 +92,10 @@ $(document).ready(function() {
         }, 5000);
         form.reset();
       }, (error) => {
-        msg.innerHTML = "❌ Failed to send message. Please try again.";
+        msg.innerHTML = "❌ Failed to send message.";
         msg.className = "error";
         msg.style.display = "block";
+        console.error("EmailJS Error:", error);
         setTimeout(() => {
           msg.style.display = "none";
           msg.className = "";
