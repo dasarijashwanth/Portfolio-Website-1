@@ -1,58 +1,134 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './CircularText.css'; // Import styles separately for cleaner code
+$(document).ready(function() {
 
-const CircularText = ({ text = '', spinDuration = 20, onHover = 'speedUp', className = '' }) => {
-  const containerRef = useRef(null);
-  const [hovered, setHovered] = useState(false);
-
-  useEffect(() => {
-    const radius = 100; // distance from center
-    const characters = text.split('');
-    const angleIncrement = 360 / characters.length;
-
-    const container = containerRef.current;
-    container.innerHTML = ''; // Clear previous content
-
-    characters.forEach((char, i) => {
-      const span = document.createElement('span');
-      span.innerText = char;
-      const angle = i * angleIncrement;
-
-      span.style.position = 'absolute';
-      span.style.transform = `
-        rotate(${angle}deg)
-        translate(${radius}px)
-        rotate(${-angle}deg)
-      `;
-
-      container.appendChild(span);
-    });
-  }, [text]);
-
-  const handleMouseEnter = () => {
-    if (onHover === 'speedUp') {
-      setHovered(true);
+  // Sticky header on scroll
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 1) {
+      $(".header-area").addClass("sticky");
+    } else {
+      $(".header-area").removeClass("sticky");
     }
-  };
 
-  const handleMouseLeave = () => {
-    if (onHover === 'speedUp') {
-      setHovered(false);
+    // Update the active section in the header as user scrolls
+    updateActiveSection();
+  });
+
+  // Smooth scrolling for header links
+  $(".header ul li a").click(function(e) {
+    e.preventDefault(); 
+
+    var target = $(this).attr("href");
+
+    if ($(target).hasClass("active-section")) {
+      return; 
     }
-  };
 
-  const actualDuration = hovered ? spinDuration / 3 : spinDuration;
+    if (target === "#home") {
+      $("html, body").animate(
+        {
+          scrollTop: 0 
+        },
+        500
+      );
+    } else {
+      var offset = $(target).offset().top - 40; 
 
-  return (
-    <div
-      className={`circular-text-wrapper ${className}`}
-      style={{ animationDuration: `${actualDuration}s` }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className="circular-text" ref={containerRef}></div>
-    </div>
-  );
-};
+      $("html, body").animate(
+        {
+          scrollTop: offset
+        },
+        500
+      );
+    }
 
-export default CircularText;
+    // Remove active class from all links and add it to the clicked one
+    $(".header ul li a").removeClass("active");
+    $(this).addClass("active");
+  });
+
+  // Initial content revealing animation using ScrollReveal
+  ScrollReveal({
+    distance: "100px",
+    duration: 2000,
+    delay: 200
+  });
+
+  // Reveal animations for sections
+  ScrollReveal().reveal(".header a, .profile-photo, .about-content, .education", {
+    origin: "left"
+  });
+  ScrollReveal().reveal(".header ul, .profile-text, .about-skills, .Experience", {
+    origin: "right"
+  });
+  ScrollReveal().reveal(".project-title, .publications-title, .contact-title", {
+    origin: "top"
+  });
+  ScrollReveal().reveal(".projects, .publications, .contact", {
+    origin: "bottom"
+  });
+  
+
+  // Contact form submission to Google Sheets
+ <!-- NEW EmailJS SDK v4 -->
+<script type="module">
+  import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+
+  emailjs.init('o0KiwX8aSnZJxx_6S'); // Your Public Key
+
+  const form = document.getElementById("contact-form");
+  const msg = document.getElementById("msg");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_nmqgw5a', 'template_1vykt3k', this)
+      .then(() => {
+        msg.innerHTML = "✅ Message sent successfully!";
+        msg.className = "success";
+        msg.style.display = "block";
+        setTimeout(() => {
+          msg.style.display = "none";
+          msg.className = "";
+          msg.innerHTML = "";
+        }, 5000);
+        form.reset();
+      }, (error) => {
+        msg.innerHTML = "❌ Failed to send message.";
+        msg.className = "error";
+        msg.style.display = "block";
+        console.error("EmailJS Error:", error);
+        setTimeout(() => {
+          msg.style.display = "none";
+          msg.className = "";
+          msg.innerHTML = "";
+        }, 5000);
+      });
+  });
+</script>
+
+
+// Function to update active section in the header based on scroll position
+function updateActiveSection() {
+  var scrollPosition = $(window).scrollTop();
+
+  // Check if scroll position is at the top of the page
+  if (scrollPosition === 0) {
+    $(".header ul li a").removeClass("active");
+    $(".header ul li a[href='#home']").addClass("active");
+    return;
+  }
+
+  // Iterate through each section and update the active class in the header
+  $("section").each(function() {
+    var target = $(this).attr("id");
+    var offset = $(this).offset().top;
+    var height = $(this).outerHeight();
+
+    if (
+      scrollPosition >= offset - 40 &&
+      scrollPosition < offset + height - 40
+    ) {
+      $(".header ul li a").removeClass("active");
+      $(".header ul li a[href='#" + target + "']").addClass("active");
+    }
+  });
+}  
