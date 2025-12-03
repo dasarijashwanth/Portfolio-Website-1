@@ -240,14 +240,13 @@ profile-photo .img{
 
 
 /*---------------------------Education & Experience---------------------------*/
-
 .education-content .row{
   display: flex;
   border-radius: 5px;
-  height: 400px;
-  margin-bottom: 250px;
+  margin-bottom: 120px; /* adjust as needed */
+  height: auto; /* allow content to grow */
+  flex-wrap: wrap; /* prevent overflow */
 }
-
 .education-content .title{
   color: #fed700;
 }
